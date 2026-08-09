@@ -1,0 +1,40 @@
+# Core RAG framework
+langchain==0.3.7
+langchain-openai==0.2.9
+langchain-community==0.3.7
+langchain-core==0.3.19
+
+# Vector store
+faiss-cpu>=1.9.0
+
+# LLM / embeddings provider
+openai==1.54.4
+tiktoken==0.8.0
+
+# Hallucination guard (NLI)
+transformers>=4.46.2
+torch>=2.5.1
+sentence-transformers>=3.2.1
+
+# Evaluation
+ragas==0.2.6
+datasets==3.1.0
+
+# UI
+streamlit>=1.40.1
+
+# GitHub data ingestion
+PyGithub>=2.5.0
+
+# Data handling
+pandas>=2.2.3
+numpy>=1.26.4
+pydantic>=2.9.2
+python-dotenv>=1.0.1
+
+# Utilities
+tenacity>=9.0.0
+tqdm>=4.67.0
+
+# Dev/testing
+pytest>=8.3.3
