@@ -12,10 +12,6 @@ ENV/
 __pycache__/
 *.pyc
 
-# RAGAs / dataset artifacts (optional — these can get large)
-evaluation/ragas_eval_dataset/
-evaluation/results/*.csv
-
 # IDE
 .vscode/
 .idea/

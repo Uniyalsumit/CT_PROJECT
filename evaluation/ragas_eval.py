@@ -1,18 +1,16 @@
 import sys
 import types
 
-# --- Shim: ragas tries to import ChatVertexAI from a path langchain_community
-# removed in newer versions. We don't use Vertex AI, so fake the module. ---
-fake_vertexai_module = types.ModuleType("langchain_community.chat_models.vertexai")
+# fake_vertexai_module = types.ModuleType("langchain_community.chat_models.vertexai")
 
-class ChatVertexAI:
-    """Stub — never actually used, just satisfies ragas's import."""
-    pass
+# class ChatVertexAI:
+#     """Stub — never actually used, just satisfies ragas's import."""
+#     pass
 
-fake_vertexai_module.ChatVertexAI = ChatVertexAI
-sys.modules["langchain_community.chat_models.vertexai"] = fake_vertexai_module
+# fake_vertexai_module.ChatVertexAI = ChatVertexAI
+# sys.modules["langchain_community.chat_models.vertexai"] = fake_vertexai_module
 
-# Now the real imports can proceed
+
 from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
@@ -35,14 +33,13 @@ ragas_llm = LangchainLLMWrapper(judge_llm)
 embeddings_model = HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL)
 ragas_embeddings = LangchainEmbeddingsWrapper(embeddings_model)
 
-# strictness=1 -> only 1 generation requested per call, since Groq rejects n>1
+
 answer_relevancy = AnswerRelevancy(strictness=1)
 
-# lower concurrency to stay under Groq's free-tier tokens-per-minute limit
+
 run_config = RunConfig(max_workers=2, timeout=120 , max_retries=5, max_wait=90,)
 
-# Set this to True first to validate everything works on a small sample
-# before burning your rate limit on the full 50-question run.
+
 TEST_ON_SMALL_SUBSET = True
 SUBSET_SIZE = 5
 
